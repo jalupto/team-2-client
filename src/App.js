@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Sitebar from './home/Navbar';
-import Auth from './auth/Auth';
+import Sitebar from './components/site/Navbar';
+import Auth from './components/auth/Auth';
 
 function App() {
   const [sessionToken, setSessionToken] = useState('');
