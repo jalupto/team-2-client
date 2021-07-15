@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from "reactstrap";
+import FavCreate from "./FavCreate";
+import FavTable from "./FavTable";
+import FavEdit from "./FavEdit"
+
+const FavIndex = (props) => {
+    const [favs, setFavs] = useState([]);
+    const [updateActive, setUpdateActive] = useState(false);
+    const [favToUpdate, setFavToUpdate] = useState({});
+
+    const fetchFavs = () => {
+        fetch("http://localhost:3000/favs/", {
+            method: "GET",
+            headers: new Headers({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${props.token}`
+            }),
+        })
+            .then((res) => res.json())
+            .then((logData) => {
+                setFavs(logData);
+                console.log(logData);
+            });
+    };
+
+    const editUpdateFav = (fav) => {
+        setFavToUpdate(fav);
+        console.log(fav);
+    };
+
+    const updateOn = () => {
+        setUpdateActive(true);
+    };
+
+    const updateOff = () => {
+        setUpdateActive(false);
+    };
+
+    useEffect(() => {
+        fetchFavs();
+    }, []);
+
+    return (
+        <Container>
+            <Row>
+                <Col md="3">
+                    <FavCreate fetchFavs={fetchFavs} token={props.token} />
+                </Col>
+                <Col md="9">
+                    <FavTable favs={favs} editUpdateFav={editUpdateFav} updateOn={updateOn} fetchFavs={fetchFavs} token={props.token} />
+                </Col>
+                {updateActive ? <FavEdit favToUpdate={favToUpdate} updateOff={updateOff} token={props.token} fetchFavs={fetchFavs}/> : <> </>}
+            </Row>
+        </Container>
+    )
+}
+
+export default FavIndex;
