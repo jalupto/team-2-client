@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sitebar from './components/site/Navbar';
 import Auth from './components/auth/Auth';
+import FavIndex from './components/favorites/FavIndex';
 
 function App() {
   const [sessionToken, setSessionToken] = useState('');
@@ -22,10 +23,19 @@ function App() {
     setSessionToken('');
   }
   
+
+const protectedViews = () => {
+    return sessionToken === localStorage.getItem("token") ? (
+        <FavIndex token={sessionToken} />
+    ) : (
+        <Auth updateToken={updateToken} />
+    );
+};
+
   return (
     <div className="App">
       <Sitebar clickLogout={clearToken}/>
-      <Auth updateToken={updateToken}/>
+      {protectedViews()}
     </div>
   );
 }
