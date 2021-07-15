@@ -1,6 +1,5 @@
 import React from 'react';
-import { Table, Button, Input } from 'reactstrap';
-import FavEdit from './FavEdit';
+import { Table, Button } from 'reactstrap';
 
 const FavTable = (props) => {
     const deleteFav = (fav) => {
@@ -19,7 +18,7 @@ const FavTable = (props) => {
             return(
                 <tr key={index}>
                     <th scope='row'>{fav.id}</th>
-                    <td><Input disabled={FavEdit.isDisabled} name='city' value={FavEdit.editCity} onChange={(e) => FavEdit.setEditCity(e.target.value)}/></td>
+                    <td>{fav.city}</td>
                     <td>{fav.hotel}</td>
                     <td>{fav.hot_spot}</td>
                     <td>{fav.restaurant}</td>
@@ -33,22 +32,22 @@ const FavTable = (props) => {
         })
     };
 
-    return(
+    return (
         <>
             <h3>Favorites</h3>
-            <hr/>
+            <hr />
             <Table striped>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Result</th>
-                        <th>Description</th>
-                        <th>Definition</th>
+                        <th>City</th>
+                        <th>Hotel</th>
+                        <th>Hot Spot</th>
+                        <th>Restaurant</th>
+                        <th>Activity</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {favMapper()}
-                </tbody>
+                <tbody>{favMapper()}</tbody>
             </Table>
         </>
     );

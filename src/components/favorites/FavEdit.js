@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Form, FormGroup, Label, Input, 
-    // Modal, ModalHeader, ModalBody 
+    Modal, ModalHeader, ModalBody 
 } from 'reactstrap';
 
 const FavEdit = (props) => {
@@ -33,9 +33,9 @@ const FavEdit = (props) => {
     };
 
     return(
-        // <Modal isOpen={true}>
-        //     <ModalHeader>Update your favorite destination</ModalHeader>
-        //     <ModalBody>
+        <Modal isOpen={true}>
+            <ModalHeader>Update your favorite destination</ModalHeader>
+            <ModalBody>
                 <Form onSubmit={favUpdate}>
                     <Button type='button' onClick={handleDis}>UPDATE</Button>
                     <FormGroup>
@@ -60,8 +60,8 @@ const FavEdit = (props) => {
                     </FormGroup>
                     <Button type='submit'>SAVE</Button>
                 </Form>
-            // </ModalBody>
-        // </Modal>
+            </ModalBody>
+        </Modal>
     );
 };
 
