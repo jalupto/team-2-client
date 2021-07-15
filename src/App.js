@@ -6,6 +6,7 @@ import { GlobalStyles } from './components/site/darkToggle/Global';
 import { lightTheme, darkTheme } from './components/site/darkToggle/Themes';
 import { useDarkMode } from './components/site/darkToggle/useDarkMode';
 import Toggle from './components/site/darkToggle/Toggler';
+import FavIndex from './components/favorites/FavIndex';
 
 function App() {
   const [sessionToken, setSessionToken] = useState('');
@@ -30,6 +31,14 @@ function App() {
     setSessionToken('');
   };
   
+  const protectedViews = () => {
+    return sessionToken === localStorage.getItem("token") ? (
+        <FavIndex token={sessionToken} />
+    ) : (
+        <Auth updateToken={updateToken} />
+    );
+  };
+  
   if(!mountedComponent) return <div/>
   return (
     <ThemeProvider theme={themeMode}>
@@ -38,10 +47,10 @@ function App() {
         <div className="App">
           <Toggle theme={theme} toggleTheme={themeToggler} />
           <Sitebar clickLogout={clearToken}/>
-          <Auth updateToken={updateToken}/>
+          {protectedViews()}
         </div>
       </>
-    </ThemeProvider>
+    </ThemeProvider>   
   );
 };
 
