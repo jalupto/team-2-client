@@ -48,7 +48,7 @@ const [activity, setActivity] = useState("");
                         name="city"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
-                    />
+                    required/>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="hotel">Add Hotel:</Label>
@@ -67,7 +67,7 @@ const [activity, setActivity] = useState("");
                     />
                 </FormGroup>
                 <FormGroup>
-                    <Label htmlFor="restaurant">Add restaurant:</Label>
+                    <Label htmlFor="restaurant">Add Restaurant:</Label>
                     <Input
                         name="restaurant"
                         value={restaurant}
