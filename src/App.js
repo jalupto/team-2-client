@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Sitebar from './components/site/Navbar';
 import Auth from './components/auth/Auth';
+import { Grid, Typography } from '@material-ui/core';
 import {ThemeProvider} from 'styled-components';
 import { GlobalStyles } from './components/site/darkToggle/Global';
 import { lightTheme, darkTheme } from './components/site/darkToggle/Themes';
@@ -42,15 +43,30 @@ function App() {
   if(!mountedComponent) return <div/>
   return (
     <ThemeProvider theme={themeMode}>
-      <>
       <GlobalStyles/>
-        <div className="App">
+        <Grid
+        container
+        direction='column'
+        alignItems='center'
+        spacing={0}
+      >
+          <Grid item xs={12}>
+            <Typography variant='h1'>JUNO</Typography>
+          </Grid>
+          <Grid item xs={12}>
+          <Typography variant='h3'>Travel Yet?</Typography>
+          </Grid>
+          <br/>
           <Toggle theme={theme} toggleTheme={themeToggler} />
-          <Sitebar clickLogout={clearToken}/>
-          {protectedViews()}
-        </div>
-      </>
-    </ThemeProvider>   
+          <br/>
+          <Grid item xs={12}>
+            <Sitebar clickLogout={clearToken}/>
+          </Grid>
+          <Grid container item xs={10} direction='row'>
+            {protectedViews()}
+          </Grid>
+        </Grid>
+    </ThemeProvider>
   );
 };
 

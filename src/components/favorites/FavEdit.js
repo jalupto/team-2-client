@@ -19,7 +19,7 @@ const FavEdit = (props) => {
         event.preventDefault();
         fetch(`http://localhost:3000/favs/${props.favToUpdate.id}`, {
             method: 'PUT',
-            body: JSON.stringify({fav: {
+            body: JSON.stringify({favs: {
                 city: editCity, hotel: editHotel, hot_spot: editHot_Spot, restaurant: editRest, activity: editAct
             }}),
             headers: new Headers({
