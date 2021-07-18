@@ -8,12 +8,22 @@ import { lightTheme, darkTheme } from './components/site/darkToggle/Themes';
 import { useDarkMode } from './components/site/darkToggle/useDarkMode';
 import Toggle from './components/site/darkToggle/Toggler';
 import FavIndex from './components/favorites/FavIndex';
+import ReactMapGL from 'react-map-gl';
+import config from './config';
 
-function App() {
+export default function App() {
   const [sessionToken, setSessionToken] = useState('');
 
   const [theme, themeToggler, mountedComponent] = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
+  const [viewport, setViewport] = useState({
+    latitude: 39.7684,
+    longitude: -86.1581,
+    width: '75vw',
+    height: '550px',
+    zoom: 10
+  });
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -65,9 +75,18 @@ function App() {
           <Grid container item xs={10} direction='row'>
             {protectedViews()}
           </Grid>
+          <br/>
+          <ReactMapGL
+            {...viewport}
+            mapboxApiAccessToken={config.REACT_APP_MAP_KEY}
+            mapStyle='mapbox://styles/jalupto/ckr8e20861jjx17mxsxf434yp'
+            onViewportChange={viewport => {
+              setViewport(viewport);
+            }}
+          >
+            Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
+          </ReactMapGL>
         </Grid>
     </ThemeProvider>
   );
 };
-
-export default App;
