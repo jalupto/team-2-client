@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import Sitebar from './components/site/Navbar';
 import Auth from './components/auth/Auth';
 import { Grid, Typography } from '@material-ui/core';
@@ -9,6 +9,8 @@ import { useDarkMode } from './components/site/darkToggle/useDarkMode';
 import Toggle from './components/site/darkToggle/Toggler';
 import FavIndex from './components/favorites/FavIndex';
 import ReactMapGL from 'react-map-gl';
+import Geocoder from 'react-map-gl-geocoder';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import config from './config';
 
 export default function App() {
@@ -21,9 +23,21 @@ export default function App() {
     latitude: 39.7684,
     longitude: -86.1581,
     width: '75vw',
-    height: '550px',
+    height: '100vh',
     zoom: 10
   });
+  const mapRef = useRef();
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewport(newViewport), []);
+
+  const handleGeocoderViewportChange = useCallback(
+    (newViewport) => {
+      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+      return handleViewportChange({
+        ...newViewport,
+        ...geocoderDefaultOverrides
+      });
+    }, [handleViewportChange]);
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -77,14 +91,19 @@ export default function App() {
           </Grid>
           <br/>
           <ReactMapGL
+            ref={mapRef}
             {...viewport}
             mapboxApiAccessToken={config.REACT_APP_MAP_KEY}
             mapStyle='mapbox://styles/jalupto/ckr8e20861jjx17mxsxf434yp'
-            onViewportChange={viewport => {
-              setViewport(viewport);
-            }}
+            onViewportChange={handleViewportChange}
           >
             Longitude: {viewport.longitude} | Latitude: {viewport.latitude} | Zoom: {viewport.zoom}
+            <Geocoder
+              mapRef={mapRef}
+              onViewportChange={handleGeocoderViewportChange}
+              mapboxApiAccessToken={config.REACT_APP_MAP_KEY}
+              position='top-right'
+            />
           </ReactMapGL>
         </Grid>
     </ThemeProvider>
