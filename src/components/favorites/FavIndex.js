@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "reactstrap";
+// import { Container, Row, Col } from "reactstrap";
+import { Grid } from "@material-ui/core";
 import FavCreate from "./FavCreate";
 import FavTable from "./FavTable";
 import FavEdit from "./FavEdit"
@@ -47,17 +48,20 @@ const FavIndex = (props) => {
 
     
     return (
-        <Container>
-            <Row>
-                <Col md="3">
-                    <FavCreate fetchFavs={fetchFavs} token={props.token} />
-                </Col>
-                <Col md="9">
-                    <FavTable favs={favs} editUpdateFav={editUpdateFav} updateOn={updateOn} fetchFavs={fetchFavs} token={props.token} />
-                </Col>
-                {updateActive ? <FavEdit favToUpdate={favToUpdate} updateOff={updateOff} token={props.token} fetchFavs={fetchFavs}/> : <> </>}
-            </Row>
-        </Container>
+        <Grid
+            container
+            direction='row'
+            alignContent='center'
+            spacing={3}
+        >
+            <Grid item xs={3}>
+                <FavCreate fetchFavs={fetchFavs} token={props.token} />
+            </Grid>
+            <Grid item xs={9}>
+                <FavTable favs={favs} editUpdateFav={editUpdateFav} updateOn={updateOn} fetchFavs={fetchFavs} token={props.token} />
+            </Grid>
+            {updateActive ? <FavEdit favToUpdate={favToUpdate} updateOff={updateOff} token={props.token} fetchFavs={fetchFavs}/> : <> </>}
+        </Grid>
     )
 }
 
