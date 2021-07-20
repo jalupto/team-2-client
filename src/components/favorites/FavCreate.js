@@ -28,7 +28,7 @@ const [activity, setActivity] = useState("");
             }),
             headers: new Headers({
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${props.token}`
+                "Authorization": `Bearer ${props.token}`
             }),
         })
             .then((res) => res.json())
@@ -45,6 +45,7 @@ const [activity, setActivity] = useState("");
 
     return (
         <>
+        
             <h3>Create a Favorite</h3>
             <Form className="create-fav-form" onSubmit={handleSubmit}>
                 <FormControl>

@@ -6,7 +6,7 @@ import { Table, Button,
 
 const FavTable = (props) => {
     const deleteFav = (fav) => {
-        fetch(`http://localhost:3000/favs/${fav.id}`, {
+        fetch(`http://localhost:3000/favs/`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -19,6 +19,7 @@ const FavTable = (props) => {
     const favMapper = () => {
         return props.favs.map((fav, index) => {
             return(
+                
                 <tr key={index}>
                     <th scope='row'>{fav.id}</th>
                     <td>{fav.city}</td>
@@ -37,7 +38,7 @@ const FavTable = (props) => {
 
     return (
         <>
-            <h3>Favorites</h3>
+            <h3 >Favorites</h3>
             <hr />
             <Table striped>
                 <thead>
