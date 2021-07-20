@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+/* Create A Favorite Styling */
+
+button.save-fav,button.fav-icon {
+color: #F05AA1;
+background-color: #5C70B5;
+}
+
+button.save-fav:hover {
+background-color: #F05AA1;
+color: #5C70B5;
+}
+

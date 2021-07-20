@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Form, FormGroup, Label} from "reactstrap";
+import Button from "@material-ui/core/Button";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FormControl from "@material-ui/core/FormControl/";
+import FilledInput from "@material-ui/core/FilledInput/";
+import "../../App.css";
 
 const FavCreate = (props) => {
 const [city, setCity] = useState("")
@@ -42,48 +47,56 @@ const [activity, setActivity] = useState("");
         <>
         
             <h3>Create a Favorite</h3>
-            <Form onSubmit={handleSubmit}>
-                <FormGroup>
+            <Form className="create-fav-form" onSubmit={handleSubmit}>
+                <FormControl>
                     <Label htmlFor="city">Add City:</Label>
-                    <Input
+                    <FilledInput
                         name="city"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
-                    required/>
-                </FormGroup>
-                <FormGroup>
+                        required
+                    />
+                </FormControl>
+                <FormControl>
                     <Label htmlFor="hotel">Add Hotel:</Label>
-                    <Input
+                    <FilledInput
                         name="hotel"
                         value={hotel}
                         onChange={(e) => setHotel(e.target.value)}
-                    ></Input>
-                </FormGroup>
-                <FormGroup>
+                    ></FilledInput>
+                </FormControl>
+                <FormControl>
                     <Label htmlFor="hot_spot">Add Hot Spot:</Label>
-                    <Input
+                    <FilledInput
                         name="hot_spot"
                         value={hot_spot}
                         onChange={(e) => setHot_Spot(e.target.value)}
                     />
-                </FormGroup>
-                <FormGroup>
+                </FormControl>
+                <FormControl>
                     <Label htmlFor="restaurant">Add Restaurant:</Label>
-                    <Input
+                    <FilledInput
                         name="restaurant"
                         value={restaurant}
                         onChange={(e) => setRestaurant(e.target.value)}
                     />
-                </FormGroup>
-                <FormGroup>
+                </FormControl>
+                <FormControl>
                     <Label htmlFor="activity">Add Activity:</Label>
-                    <Input
+                    <FilledInput
                         name="activity"
                         value={activity}
                         onChange={(e) => setActivity(e.target.value)}
                     />
-                </FormGroup>
-                <Button type="submit">Click to Save</Button>
+                </FormControl>
+                <Button
+                    className="save-fav"
+                    type="submit"
+                    variant="contained"
+                    startIcon={<FavoriteIcon className="fav_icon" />}
+                >
+                    Save Favorite
+                </Button>
             </Form>
         </>
     );
