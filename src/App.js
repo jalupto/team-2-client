@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Sitebar from './components/site/Navbar';
 import Auth from './components/auth/Auth';
-import {ThemeProvider} from 'styled-components';
-import { GlobalStyles } from './components/site/darkToggle/Global';
-import { lightTheme, darkTheme } from './components/site/darkToggle/Themes';
-import { useDarkMode } from './components/site/darkToggle/useDarkMode';
-import Toggle from './components/site/darkToggle/Toggler';
+// import {ThemeProvider} from 'styled-components';
+// import { GlobalStyles } from './components/site/darkToggle/Global';
+// import { lightTheme, darkTheme } from './components/site/darkToggle/Themes';
+// import { useDarkMode } from './components/site/darkToggle/useDarkMode';
+// import Toggle from './components/site/darkToggle/Toggler';
 import FavIndex from './components/favorites/FavIndex';
 
 function App() {
   const [sessionToken, setSessionToken] = useState('');
 
-  const [theme, themeToggler, mountedComponent] = useDarkMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  // const [theme, themeToggler, mountedComponent] = useDarkMode();
+  // const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   useEffect(() => {
     if (localStorage.getItem('token')){
@@ -39,18 +39,18 @@ function App() {
     );
   };
   
-  if(!mountedComponent) return <div/>
+  // if(!mountedComponent) return <div/>
   return (
-    <ThemeProvider theme={themeMode}>
+    // <ThemeProvider theme={themeMode}>
       <>
-      <GlobalStyles/>
+      {/* <GlobalStyles/> */}
         <div className="App">
-          <Toggle theme={theme} toggleTheme={themeToggler} />
+          {/* <Toggle theme={theme} toggleTheme={themeToggler} /> */}
           <Sitebar clickLogout={clearToken}/>
           {protectedViews()}
         </div>
       </>
-    </ThemeProvider>   
+    // </ThemeProvider>   
   );
 };
 

@@ -14,7 +14,7 @@ const FavIndex = (props) => {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${props.token}`
+                "Authorization": `Bearer ${props.token}`
             }),
         })
             .then((res) => res.json())
@@ -40,7 +40,12 @@ const FavIndex = (props) => {
     useEffect(() => {
         fetchFavs();
     }, []);
+    
 
+
+
+
+    
     return (
         <Container>
             <Row>
