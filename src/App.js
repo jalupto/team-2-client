@@ -59,7 +59,10 @@ export default function App() {
         direction='column'
         alignItems='center'
         spacing={0}
-      >
+      >          
+          <Grid item xs={12}>
+            <Sitebar clickLogout={clearToken}/>
+          </Grid>
           <Grid item xs={12}>
             <Typography variant='h1'>JUNO</Typography>
           </Grid>
@@ -69,9 +72,7 @@ export default function App() {
           <br/>
           <Toggle theme={theme} toggleTheme={themeToggler} />
           <br/>
-          <Grid item xs={12}>
-            <Sitebar clickLogout={clearToken}/>
-          </Grid>
+
           <Grid container item xs={10} direction='row'>
             {protectedViews()}
           </Grid>
