@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { useForm } from "react-hook-form";
-
-
+// import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const Signup = (props) => {
@@ -15,7 +14,7 @@ const Signup = (props) => {
         setPasswordShown(passwordShown ? false :true);
     }
 
-    const { register, onSubmit } = useForm();
+    // const { register, onSubmit } = useForm();
     const handleSubmit = (event) => {    
         event.preventDefault();
         fetch("http://localhost:3000/user/register", {

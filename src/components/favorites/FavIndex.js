@@ -42,11 +42,6 @@ const FavIndex = (props) => {
         fetchFavs();
     }, []);
     
-
-
-
-
-    
     return (
         <Grid
             container
