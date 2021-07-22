@@ -1,8 +1,8 @@
 import React, {useState, useRef, useEffect}  from "react";
 // import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import { MenuItem, MenuList, Popper, Paper, Button, ClickAwayListener, AppBar} from "@material-ui/core";
-import FavIndex from "../favorites/FavIndex";
-import FavCreate from "../favorites/FavCreate";
+// import FavIndex from "../favorites/FavIndex";
+// import FavCreate from "../favorites/FavCreate";
 
 
 const Sitebar = (props) => {

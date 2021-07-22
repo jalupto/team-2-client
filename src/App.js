@@ -12,13 +12,16 @@ import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import config from './config';
+import Flipboard from './components/react-split-flap-effect/Flipboard';
 
 export default function App() {
   const [sessionToken, setSessionToken] = useState('');
 
+  //dark mode toggler
   const [theme, themeToggler, mountedComponent] = useDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
+  //interactive map from mapbox
   const [viewport, setViewport] = useState({
     latitude: 39.7684,
     longitude: -86.1581,
@@ -30,9 +33,10 @@ export default function App() {
   const handleViewportChange = useCallback(
     (newViewport) => setViewport(newViewport), []);
 
+  //search function for map
   const handleGeocoderViewportChange = useCallback(
     (newViewport) => {
-      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+      const geocoderDefaultOverrides = { transitionDuration: 5000 };
       return handleViewportChange({
         ...newViewport,
         ...geocoderDefaultOverrides
@@ -86,7 +90,8 @@ export default function App() {
           <br/>
           <Toggle theme={theme} toggleTheme={themeToggler} />
           <br/>
-
+          <Flipboard/>
+          <br/>
           <Grid container item xs={10} direction='row'>
             {protectedViews()}
           </Grid>
