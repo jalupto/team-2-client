@@ -11,7 +11,7 @@ import FavIndex from './components/favorites/FavIndex';
 import ReactMapGL from 'react-map-gl';
 import Geocoder from 'react-map-gl-geocoder';
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import config from './config';
+// import config from './config';
 import Flipboard from './components/react-split-flap-effect/Flipboard';
 
 export default function App() {
@@ -99,7 +99,7 @@ export default function App() {
           <ReactMapGL
             ref={mapRef}
             {...viewport}
-            mapboxApiAccessToken={config.REACT_APP_MAP_KEY}
+            mapboxApiAccessToken={process.env.REACT_APP_MAP_KEY}
             mapStyle='mapbox://styles/jalupto/ckr8e20861jjx17mxsxf434yp'
             onViewportChange={handleViewportChange}
           >
@@ -107,7 +107,7 @@ export default function App() {
             <Geocoder
               mapRef={mapRef}
               onViewportChange={handleGeocoderViewportChange}
-              mapboxApiAccessToken={config.REACT_APP_MAP_KEY}
+              mapboxApiAccessToken={process.env.REACT_APP_MAP_KEY}
               position='top-right'
             />
           </ReactMapGL>
