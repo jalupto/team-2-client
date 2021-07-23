@@ -7,6 +7,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FormControl from "@material-ui/core/FormControl/";
 import FilledInput from "@material-ui/core/FilledInput/";
 import "../../App.css";
+import APIURL from "../../helpers/environment";
 
 const FavCreate = (props) => {
 const [city, setCity] = useState("")
@@ -17,7 +18,7 @@ const [activity, setActivity] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "POST",
             body: JSON.stringify({
                 favs: {

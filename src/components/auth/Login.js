@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
-import { useForm } from "react-hook-form";
+import APIURL from '../../helpers/environment';
+// import { useForm } from "react-hook-form";
 // import "./styles.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,10 +16,10 @@ const Login = (props) => {
         setPasswordShown(passwordShown ? false :true);
     }
 
-    const { register, onSubmit } = useForm();
+    // const { register, onSubmit } = useForm();
     const handleSubmit = (event) => {
         event.preventDefault();
-        fetch("http://localhost:3000/user/login", {
+        fetch(`${APIURL}/user/login`, {
             method: 'POST',
             body: JSON.stringify({user: {email: email, password: password}}),
             headers: new Headers({

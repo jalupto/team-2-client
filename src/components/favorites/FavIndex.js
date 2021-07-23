@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import FavCreate from "./FavCreate";
 import FavTable from "./FavTable";
-import FavEdit from "./FavEdit"
+import FavEdit from "./FavEdit";
+import APIURL from "../../helpers/environment";
 
 const FavIndex = (props) => {
     const [favs, setFavs] = useState([]);
@@ -11,7 +12,7 @@ const FavIndex = (props) => {
     const [favToUpdate, setFavToUpdate] = useState({});
 
     const fetchFavs = () => {
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
