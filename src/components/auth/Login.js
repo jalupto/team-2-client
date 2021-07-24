@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { useForm } from "react-hook-form";
-// import "./styles.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;

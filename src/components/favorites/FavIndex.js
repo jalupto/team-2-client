@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { Container, Row, Col } from "reactstrap";
 import { Grid } from "@material-ui/core";
 import FavCreate from "./FavCreate";
 import FavTable from "./FavTable";

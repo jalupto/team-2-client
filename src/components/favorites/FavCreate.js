@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { Form, 
-    // FormGroup, 
-    Label} from "reactstrap";
-import Button from "@material-ui/core/Button";
+import { Form, Label} from "reactstrap";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import FormControl from "@material-ui/core/FormControl/";
-import FilledInput from "@material-ui/core/FilledInput/";
+import {FormControl, FilledInput, Button} from "@material-ui/core/";
 import "../../App.css";
 
 const FavCreate = (props) => {
+    
 const [city, setCity] = useState("")
 const [hotel, setHotel] = useState("");
 const [hot_spot, setHot_Spot] = useState("");
@@ -47,7 +44,6 @@ const [activity, setActivity] = useState("");
 
     return (
         <>
-        
             <h3>Create a Favorite</h3>
             <Form className="create-fav-form" onSubmit={handleSubmit}>
                 <FormControl>
