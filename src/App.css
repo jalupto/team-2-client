@@ -37,15 +37,17 @@
   }
 }
 
-/* Create A Favorite Styling */
+/* Create A Favorite & NavbarStyling */
 
-button.save-fav,button.fav-icon {
+button.save-fav,button.fav-icon, .sitebar {
 color: #F05AA1;
 background-color: #5C70B5;
 }
 
-button.save-fav:hover {
+button.save-fav:hover, .sitebar-list {
 background-color: #F05AA1;
 color: #5C70B5;
 }
+
+/*Navbar Styling*/
 
