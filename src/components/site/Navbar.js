@@ -7,6 +7,8 @@ import FavMap from "../favorites/FavMap";
 import "../../../src/App.css";
 import Auth from "../auth/Auth";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Hotels from "../destinations/Hotels";
+import CityFetch from "../destinations/City";
 
 const Sitebar = () => {
     const [open, setOpen] = useState(false);
@@ -121,6 +123,16 @@ const [sessionToken, setSessionToken] = useState("");
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem onClick={handleClose}>
+                                                <Link to="/hotels">
+                                                    Hotel Search
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <Link to="/city">
+                                                    City Search
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
                                                 <li onClick={clearToken}>
                                                     Logout
                                                 </li>
@@ -135,7 +147,12 @@ const [sessionToken, setSessionToken] = useState("");
 
                 <Route exact path="/favs">
                     {protectedViews()}
-
+                </Route>
+                <Route exact path="/hotels">
+                    <Hotels />
+                </Route>
+                <Route exact path="/city">
+                    <CityFetch />
                 </Route>
                 <Route exact path="/">
                     <FavMap />
