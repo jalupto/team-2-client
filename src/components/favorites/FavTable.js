@@ -19,7 +19,6 @@ const FavTable = (props) => {
     const favMapper = () => {
         return props.favs.map((fav, index) => {
             return(
-                
                 <tr key={index}>
                     <th scope='row'>{fav.id}</th>
                     <td>{fav.city}</td>

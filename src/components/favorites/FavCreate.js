@@ -44,7 +44,6 @@ const [activity, setActivity] = useState("");
 
     return (
         <>
-        
             <h3>Create a Favorite</h3>
             <Form className="create-fav-form" onSubmit={handleSubmit}>
                 <FormControl>

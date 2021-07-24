@@ -1,7 +1,9 @@
-import { ReactDOM } from "react-dom";
-import React, {useState} from "react";
-import { faClipboard } from "@fortawesome/free-solid-svg-icons";
-import ReactCardFlip from "react-card-flip";
+// import { ReactDOM } from "react-dom";
+import React, {
+  // useState
+} from "react";
+// import { faClipboard } from "@fortawesome/free-solid-svg-icons";
+// import ReactCardFlip from "react-card-flip";
 import { FlapDisplay, Presets } from 'react-split-flap-effect'
 // import from 'extras/themes.css'
 const Flipboard = () => {
@@ -19,7 +21,7 @@ export default Flipboard;
 
 
 
-{/* </style>
+/* </style>
 <div class="container"></div>
 <script src="//d3js.org/d3.v4.min.js"></script>
-<script> */}
+<script> */
