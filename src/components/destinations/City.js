@@ -1,29 +1,49 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { Input, FormControl, Button } from "@material-ui/core";
+import Hotels from "./Hotels";
 
-
-const City = () => {
-    const [results, setResults] = useState([])
+const CityFetch = () => {
+    const [lon, setLon] = useState("");
+    const [lat, setLat] = useState("");
+    const [city, setCity] = useState("");
 
     const getCity = async () => {
-        const res = await fetch(
-            "https://travel-advisor.p.rapidapi.com/locations/v2/auto-complete?query=indianapolis&lang=en_US&units=mi",
-            {
-                method: "GET",
-                headers: new Headers ({
-                    "x-rapidapi-key":
-                        "253f860dccmsh5a8313c5abb0c80p1ea8c4jsnd54b97e2bab2",
-                    "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
-                }),
-            }
-        )
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }
-    getCity();
+        const res = await fetch(`https://travel-advisor.p.rapidapi.com/locations/v2/auto-complete?query=${city}&lang=en_US&units=km`, {
+            "method": "GET",
+            "headers": {
+            "x-rapidapi-key": "6bfd3aa317mshb3d7f9f736c2495p1b5b18jsndd1d5034882e",
+            "x-rapidapi-host": "travel-advisor.p.rapidapi.com"
+        }
+        })
+
+        const results = await res.json();
+        const lon = results.data.Typeahead_autocomplete.results[0].detailsV2.geocode.longitude;
+        const lat = results.data.Typeahead_autocomplete.results[0].detailsV2.geocode.latitude;
+        setLat(lat);
+        setLon(lon);
+        setCity("")
+        console.log(lon);
+        console.log(lat);
+}
+    useEffect(() => {
+        getCity();
+    }, [])
+
+    return (
+        <>
+            <FormControl>
+                <Input
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder="Search City"
+                />   
+                
+                <Button onClick={getCity}>Click</Button>
+            </FormControl>
+            <Hotels getCity={getCity} lat={lat} lon={lon} city={city} />
+        </>
+    );
+
 }
 
-export default City;
+export default CityFetch;
