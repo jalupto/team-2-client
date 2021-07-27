@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import "../../App.css";
+import APIURL from '../../helpers/environment';
 
 //====================================================================================================================
 // MADE BY JARED
@@ -8,15 +9,7 @@ import "../../App.css";
 
 const FavTable = (props) => {
     const deleteFav = (fav) => {
-        fetch(`http://localhost:3000/favs/${fav.id}`, {
-import { Table, Button, 
-    // Input 
-} from 'reactstrap';
-import APIURL from '../../helpers/environment';
-
-const FavTable = (props) => {
-    const deleteFav = (fav) => {
-        fetch(`${APIURL}/favs/`, {
+        fetch(`${APIURL}/favs/${fav.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
