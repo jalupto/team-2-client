@@ -14,8 +14,10 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^5.0.2",
+    "dotenv": "^10.0.0",
     "react": "^17.0.2",
     "react-card-flip": "^1.1.1",
+    "react-debounce-input": "^3.2.4",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.11.0",
     "react-map-gl": "^6.1.16",
@@ -50,5 +52,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {}
+}
+  "engines": {
+    "node": "14.16.0"
   }
 }

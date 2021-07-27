@@ -2,7 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import FavCreate from "./FavCreate";
 import FavTable from "./FavTable";
-import FavEdit from "./FavEdit"
+import FavEdit from "./FavEdit";
+import { makeStyles } from "@material-ui/core/styles";
+
+//====================================================================================================================
+// MADE BY CHERRON
+//====================================================================================================================
+
+import APIURL from "../../helpers/environment";
 
 const FavIndex = (props) => {
     const [favs, setFavs] = useState([]);
@@ -10,7 +17,7 @@ const FavIndex = (props) => {
     const [favToUpdate, setFavToUpdate] = useState({});
 
     const fetchFavs = () => {
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",
@@ -40,6 +47,14 @@ const FavIndex = (props) => {
     useEffect(() => {
         fetchFavs();
     }, []);
+
+    const useStyles = makeStyles(() => ({ //give content spacing from edges
+        root: {
+            margin: '5%'
+        }
+    }));
+
+    const classes = useStyles();
     
     return (
         <Grid
@@ -47,7 +62,9 @@ const FavIndex = (props) => {
             direction='row'
             alignContent='center'
             spacing={3}
+            className={classes.root}
         >
+            <Grid item xs={12}></Grid>
             <Grid item xs={3}>
                 <FavCreate fetchFavs={fetchFavs} token={props.token} />
             </Grid>

@@ -3,24 +3,27 @@ import { Form, Label} from "reactstrap";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import {FormControl, FilledInput, Button} from "@material-ui/core/";
 import "../../App.css";
+import APIURL from "../../helpers/environment";
+
+//====================================================================================================================
+// MADE BY CHERRON
+//====================================================================================================================
 
 const FavCreate = (props) => {
     
 const [city, setCity] = useState("")
 const [hotel, setHotel] = useState("");
-const [hot_spot, setHot_Spot] = useState("");
 const [restaurant, setRestaurant] = useState("");
 const [activity, setActivity] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "POST",
             body: JSON.stringify({
                 favs: {
                     city: city,
                     hotel: hotel,
-                    hot_spot: hot_spot,
                     restaurant: restaurant,
                     activity: activity,
                 },
@@ -35,7 +38,6 @@ const [activity, setActivity] = useState("");
                 console.log(logData);
                 setCity("");
                 setHotel("");
-                setHot_Spot("");
                 setRestaurant("");
                 setActivity("");
                 props.fetchFavs();
@@ -62,14 +64,6 @@ const [activity, setActivity] = useState("");
                         value={hotel}
                         onChange={(e) => setHotel(e.target.value)}
                     ></FilledInput>
-                </FormControl>
-                <FormControl>
-                    <Label htmlFor="hot_spot">Add Hot Spot:</Label>
-                    <FilledInput
-                        name="hot_spot"
-                        value={hot_spot}
-                        onChange={(e) => setHot_Spot(e.target.value)}
-                    />
                 </FormControl>
                 <FormControl>
                     <Label htmlFor="restaurant">Add Restaurant:</Label>

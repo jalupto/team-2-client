@@ -1,3 +1,7 @@
+* {
+  border-color: red;
+}
+
 .App {
   text-align: center;
 }
@@ -39,7 +43,7 @@
 
 /* Create A Favorite & NavbarStyling */
 
-button.save-fav,button.fav-icon, .sitebar {
+button.save-fav, button.fav-icon, .sitebar {
 color: #F05AA1;
 background-color: #5C70B5;
 }
@@ -49,12 +53,22 @@ background-color: #F05AA1;
 color: #5C70B5;
 }
 
-/*Navbar Styling*/
-
-
 /*Card Styling*/
 .fav_icon {
   color: #F05AA1;
 }
 
+/*Table Styling*/
+#table-font {
+  color: #5C70B5;
+}
+.table:hover {
+  --bs-table-hover-color: #F05AA1;
+  --bs-table-hover-bg: #5C70B5;
+}
 
+/*move modal down from top*/
+.modal-body {
+  position: relative;
+  top: 10%;
+}
