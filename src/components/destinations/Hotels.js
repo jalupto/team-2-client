@@ -42,11 +42,9 @@ const Hotels = (props) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
-            maxWidth: '100vw',
-            minWidth: '15vw',
-            minHeight: '60vh',
-            maxHeight: '100vh',
-            padding: '10%',
+            minWidth: '100%',
+            minHeight: '100%',
+            padding: '5%',
             textAlign: 'center'
         },
         media: {
@@ -60,17 +58,17 @@ const Hotels = (props) => {
         //     fontSize: '0.75rem',
         // },
         gridContainer: {
-            padding: '10%'
+            padding: '5%'
         }
     }));
 
     const classes = useStyles();
 
     useEffect(() => {
-        if (props.lat && props.lon && props.city) {
+        // if (props.lat && props.lon && props.city) {
             getHotels();
-        }
-    });
+        // }
+    }, [props.lat, props.lon]);
 
     return (
         // <div className='main'>
@@ -87,10 +85,6 @@ const Hotels = (props) => {
                     <Grid item xs={12} sm={6}>
                         <Card className={classes.root} key={index}>
                             <CardHeader title={result.name} subheader={result.rating+' Stars'} />
-                            <br/>
-                            <CardMedia className={classes.media} 
-                            image={result.photo.images.original.url} 
-                            />
                             <CardContent>
                                 <Typography
                                     variant="body2"
@@ -104,6 +98,9 @@ const Hotels = (props) => {
                                     {/* <a href={result.url} target='blank'>Book Now!</a> */}
                                 </Typography>
                             </CardContent>
+                            <CardMedia className={classes.media} 
+                            image={result.photo.images.original.url} 
+                            />
                             {/* <CardActions disableSpacing>
                                 <IconButton className={classes.button}>
                                     Save to Favs
