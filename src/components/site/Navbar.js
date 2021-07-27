@@ -1,11 +1,25 @@
 import React, {useState, useRef, useEffect}  from "react";
-// import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import { MenuItem, MenuList, Popper, Paper, Button, ClickAwayListener, AppBar} from "@material-ui/core";
-// import FavIndex from "../favorites/FavIndex";
-// import FavCreate from "../favorites/FavCreate";
+import { Route, Link } from "react-router-dom";
+import { MenuItem, MenuList, Popper, Paper, Button, ClickAwayListener, AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import FavIndex from "../favorites/FavIndex";
+import FavMap from "../favorites/FavMap";
+import "../../../src/App.css";
+import Auth from "../auth/Auth";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import Hotels from "../destinations/Hotels";
+import CityFetch from "../destinations/City";
+import Toggle from "../site/darkToggle/Toggler"; //add dark mode toggle to navbar
+import { GlobalStyles } from "../site/darkToggle/Global";
+import { lightTheme, darkTheme } from "../site/darkToggle/Themes";
+import { useDarkMode } from "../site/darkToggle/useDarkMode";
+import { ThemeProvider } from "styled-components";
 
+//====================================================================================================================
+// MADE BY CHERRON
+//====================================================================================================================
 
-const Sitebar = (props) => {
+const Sitebar = () => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -28,7 +42,7 @@ const Sitebar = (props) => {
     }
 
     // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
+    const prevOpen = useRef(open);
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
@@ -36,55 +50,131 @@ const Sitebar = (props) => {
         prevOpen.current = open;
     }, [open]);
 
-        return (
-            <AppBar className="sitebar" position="sticky">
-                    <Button
-                        ref={anchorRef}
-                        aria-haspopup="true"
-                        onClick={handleToggle}
-                    >
-                        Account
-                    </Button>
-                    <Popper
-                        open={open}
-                        anchorEl={anchorRef.current}
-                        role={undefined}
-                        transition
-                        disablePortal
-                    >
-                        <Paper>
-                            <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList
-                                    autoFocusItem={open}
-                                    id="menu-list-grow"
-                                    onKeyDown={handleListKeyDown}
-                                >
-                                    <MenuItem onClick={handleClose}>
-                                        <li>Create Favorite</li>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        <li>My account</li>
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        <li onClick={props.clickLogout}>
-                                            Logout
-                                        </li>
-                                    </MenuItem>
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
-                    </Popper>
-                    {/* <AppBar className="sitebar-route">
-                    <BrowserRouter>
-                        <Switch>
-                        <Route exact path="/favcreate"><FavCreate /></Route>
-                    </Switch>
-                    </BrowserRouter>
 
-                </AppBar> */}
-            </AppBar>
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        title: {
+            flexGrow: 1,
+        },
+    }));
+
+    const classes = useStyles();
+const [sessionToken, setSessionToken] = useState("");
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setSessionToken(localStorage.getItem("token"));
+        }
+    }, []);
+
+    const updateToken = (newToken) => {
+        localStorage.setItem("token", newToken);
+        setSessionToken(newToken);
+    console.log(sessionToken);
+    };
+
+    const clearToken = () => {
+        localStorage.clear();
+        setSessionToken("");
+    };
+
+    const protectedViews = () => {
+        return sessionToken === localStorage.getItem("token") ? (
+            <FavIndex token={sessionToken} />
+        ) : (
+            <Auth updateToken={updateToken} />
         );
+    };
 
-}
+    const [theme, themeToggler, mountedComponent] = useDarkMode();
+    const themeMode = theme === "light" ? lightTheme : darkTheme;
+
+    return (
+        <ThemeProvider theme={themeMode}>
+            <GlobalStyles />
+            <Grid container direction="row" alignItems="center" spacing={0}>
+                <Grid item xs={12}>
+                    <AppBar className="sitebar" position="sticky">
+                        <Toolbar>
+                            <Typography variant="h6" className={classes.title}>
+                                Juno
+                            </Typography>
+                            <Toggle theme={theme} toggleTheme={themeToggler} />
+                            <Button
+                                ref={anchorRef}
+                                aria-haspopup="true"
+                                onClick={handleToggle}
+                            >
+                                <AccountCircleIcon />
+                                Account
+                            </Button>
+                            <Popper
+                                open={open}
+                                anchorEl={anchorRef.current}
+                                role={undefined}
+                                transition
+                                disablePortal
+                            >
+                                <Paper className="sitebar-menu">
+                                    <ClickAwayListener
+                                        onClickAway={handleClose}
+                                    >
+                                        <MenuList
+                                            className="sitebar-list"
+                                            autoFocusItem={open}
+                                            id="menu-list-grow"
+                                            onKeyDown={handleListKeyDown}
+                                        >
+                                            <MenuItem onClick={handleClose}>
+                                                <Link to="/">Map</Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <Link to="/favs">
+                                                    Favorites Dashboard
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <Link to="/hotels">
+                                                    Hotel Search
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <Link to="/city">
+                                                    City Search
+                                                </Link>
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <li onClick={clearToken}>
+                                                    Logout
+                                                </li>
+                                            </MenuItem>
+                                        </MenuList>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Popper>
+                        </Toolbar>
+                    </AppBar>
+                </Grid>
+
+                <Route exact path="/favs">
+                    {protectedViews()}
+                </Route>
+                <Route exact path="/hotels">
+                    <Hotels />
+                </Route>
+                <Route exact path="/city">
+                    <CityFetch />
+                </Route>
+                <Route exact path="/">
+                    <FavMap />
+                </Route>
+            </Grid>
+        </ThemeProvider>
+    );
+};
 
 export default Sitebar;

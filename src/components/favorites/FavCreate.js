@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Form, 
-    // FormGroup, 
-    Label} from "reactstrap";
-import Button from "@material-ui/core/Button";
+import { Form, Label} from "reactstrap";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import FormControl from "@material-ui/core/FormControl/";
-import FilledInput from "@material-ui/core/FilledInput/";
+import {FormControl, FilledInput, Button} from "@material-ui/core/";
 import "../../App.css";
 import APIURL from "../../helpers/environment";
 
+//====================================================================================================================
+// MADE BY CHERRON
+//====================================================================================================================
+
 const FavCreate = (props) => {
+    
 const [city, setCity] = useState("")
 const [hotel, setHotel] = useState("");
-const [hot_spot, setHot_Spot] = useState("");
 const [restaurant, setRestaurant] = useState("");
 const [activity, setActivity] = useState("");
 
@@ -24,7 +24,6 @@ const [activity, setActivity] = useState("");
                 favs: {
                     city: city,
                     hotel: hotel,
-                    hot_spot: hot_spot,
                     restaurant: restaurant,
                     activity: activity,
                 },
@@ -39,7 +38,6 @@ const [activity, setActivity] = useState("");
                 console.log(logData);
                 setCity("");
                 setHotel("");
-                setHot_Spot("");
                 setRestaurant("");
                 setActivity("");
                 props.fetchFavs();
@@ -48,7 +46,6 @@ const [activity, setActivity] = useState("");
 
     return (
         <>
-        
             <h3>Create a Favorite</h3>
             <Form className="create-fav-form" onSubmit={handleSubmit}>
                 <FormControl>
@@ -67,14 +64,6 @@ const [activity, setActivity] = useState("");
                         value={hotel}
                         onChange={(e) => setHotel(e.target.value)}
                     ></FilledInput>
-                </FormControl>
-                <FormControl>
-                    <Label htmlFor="hot_spot">Add Hot Spot:</Label>
-                    <FilledInput
-                        name="hot_spot"
-                        value={hot_spot}
-                        onChange={(e) => setHot_Spot(e.target.value)}
-                    />
                 </FormControl>
                 <FormControl>
                     <Label htmlFor="restaurant">Add Restaurant:</Label>
