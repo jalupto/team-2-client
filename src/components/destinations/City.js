@@ -1,19 +1,21 @@
 import React, {
     useEffect, 
     useState} from "react";
-import { 
-    // Input, 
-    FormControl, Button, Grid } from "@material-ui/core";
+import { FormControl, Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Hotels from "./Hotels";
 import { DebounceInput } from 'react-debounce-input';
+
+//====================================================================================================================
+// MADE BY JARED AND CHERRON
+//====================================================================================================================
 
 const CityFetch = () => {
     const [lon, setLon] = useState("");
     const [lat, setLat] = useState("");
     const [city, setCity] = useState("");
-//
-    const getCity = async () => {
+
+    const getCity = async () => { //fetch coordinates from city search to plug into other fetch categories (ex: hotels)
         const res = await fetch(`https://api.opentripmap.com/0.1/en/places/geoname?name=${city}&apikey=${process.env.REACT_APP_OPENTRIP_KEY}`
         )
 
@@ -27,14 +29,14 @@ const CityFetch = () => {
 
     const useStyles = makeStyles(() => ({
         gridContainer: {
-            paddingTop: '5%'
+            paddingTop: '5%' //give search bar a little space from the navbar
         }
     }));
 
     const classes = useStyles();
 
     useEffect(() => {
-        if (lat && lon && city) {
+        if (lat && lon && city) { //keep from constantly changing state and making repeat fetches
             getCity();
         };
     }, []);
@@ -42,7 +44,7 @@ const CityFetch = () => {
     return (
         <Grid container justifyContent='center' className={classes.gridContainer}>
             <FormControl>
-                <DebounceInput
+                <DebounceInput //prevent fetch request per keystroke
                 minLength={3}
                 debounceTimeout={3000}
                 value={city}
