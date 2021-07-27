@@ -9,13 +9,15 @@ import { makeStyles } from "@material-ui/core/styles";
 // MADE BY CHERRON
 //====================================================================================================================
 
+import APIURL from "../../helpers/environment";
+
 const FavIndex = (props) => {
     const [favs, setFavs] = useState([]);
     const [updateActive, setUpdateActive] = useState(false);
     const [favToUpdate, setFavToUpdate] = useState({});
 
     const fetchFavs = () => {
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "GET",
             headers: new Headers({
                 "Content-Type": "application/json",

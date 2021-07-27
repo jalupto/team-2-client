@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Button, Form, FormGroup, Label, Input, 
     Modal, ModalHeader, ModalBody 
 } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 //====================================================================================================================
 // MADE BY JARED
@@ -20,7 +21,7 @@ const FavEdit = (props) => {
 
     const favUpdate = (event, fav) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/favs/${props.favToUpdate.id}`, {
+        fetch(`${APIURL}/favs/${props.favToUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({favs: {
                 city: editCity, hotel: editHotel, restaurant: editRest, activity: editAct

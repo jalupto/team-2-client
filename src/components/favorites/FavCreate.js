@@ -3,6 +3,7 @@ import { Form, Label} from "reactstrap";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import {FormControl, FilledInput, Button} from "@material-ui/core/";
 import "../../App.css";
+import APIURL from "../../helpers/environment";
 
 //====================================================================================================================
 // MADE BY CHERRON
@@ -17,7 +18,7 @@ const [activity, setActivity] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3000/favs/", {
+        fetch(`${APIURL}/favs/`, {
             method: "POST",
             body: JSON.stringify({
                 favs: {
