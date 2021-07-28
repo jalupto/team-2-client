@@ -11,13 +11,18 @@ import SentimentSatisfiedAltIcon from "@material-ui/icons/SentimentSatisfiedAltO
 import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfied";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import "../../App.css";
+import APIURL from '../../helpers/environment';
+
+//====================================================================================================================
+// MADE BY JARED
+//====================================================================================================================
 
 const FavTable = (props) => {
-
     const [value, setValue] = useState(null);
-
+          
     const deleteFav = (fav) => {
-        fetch(`http://localhost:3000/favs/${fav.id}`, {
+        fetch(`${APIURL}/favs/${fav.id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -77,7 +82,6 @@ IconContainer.propTypes = {
                     <th scope="row">{fav.id}</th>
                     <td>{fav.city}</td>
                     <td>{fav.hotel}</td>
-                    <td>{fav.hot_spot}</td>
                     <td>{fav.restaurant}</td>
                     <td>{fav.activity}</td>
                     <td>
@@ -102,23 +106,8 @@ IconContainer.propTypes = {
                         </Box>
                     </td>
                     <td>
-                        <Button
-                            color="warning"
-                            onClick={() => {
-                                props.editUpdateFav(fav);
-                                props.updateOn();
-                            }}
-                        >
-                            Update
-                        </Button>
-                        <Button
-                            color="danger"
-                            onClick={() => {
-                                deleteFav(fav);
-                            }}
-                        >
-                            Delete
-                        </Button>
+                        <Button style={{backgroundColor:'#B2B0E2', color: '#5C70B5'}} onClick={() => {props.editUpdateFav(fav); props.updateOn()}}>Update</Button>
+                        <Button style={{backgroundColor:'#F05AA1', color: '#5C70B5'}} onClick={() => {deleteFav(fav)}}>Delete</Button>
                     </td>
                 </tr>
             );
@@ -129,13 +118,12 @@ IconContainer.propTypes = {
         <>
             <h3 >Favorites</h3>
             <hr />
-            <Table striped>
+            <Table hover id='table-font'>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>City</th>
                         <th>Hotel</th>
-                        <th>Hot Spot</th>
                         <th>Restaurant</th>
                         <th>Activity</th>
                         <th>Destination Rating</th>
@@ -148,69 +136,3 @@ IconContainer.propTypes = {
 };
 
 export default FavTable;
-
-/*
-==================================================================================================================================
-ORIGINAL
-==================================================================================================================================
-*/
-
-// import React from 'react';
-// import { Table, Button, 
-//     // Input 
-// } from 'reactstrap';
-// // import FavEdit from './FavEdit';
-
-// const FavTable = (props) => {
-//     const deleteFav = (fav) => {
-//         fetch(`http://localhost:3000/favs/${fav.id}`, {
-//             method: 'DELETE',
-//             headers: new Headers({
-//                 'Content-Type': 'application/json',
-//                 'Authorization': `Bearer ${props.token}`
-//             })
-//         })
-//         .then(() => props.fetchFavs())
-//     };
-
-//     const favMapper = () => {
-//         return props.favs.map((fav, index) => {
-//             return(
-//                 <tr key={index}>
-//                     <th scope='row'>{fav.id}</th>
-//                     <td>{fav.city}</td>
-//                     <td>{fav.hotel}</td>
-//                     <td>{fav.hot_spot}</td>
-//                     <td>{fav.restaurant}</td>
-//                     <td>{fav.activity}</td>
-//                     <td>
-//                         <Button color='warning' onClick={() => {props.editUpdateFav(fav); props.updateOn()}}>Update</Button>
-//                         <Button color='danger' onClick={() => {deleteFav(fav)}}>Delete</Button>
-//                     </td>
-//                 </tr>
-//             )
-//         })
-//     };
-
-//     return (
-//         <>
-//             <h3>Favorites</h3>
-//             <hr />
-//             <Table striped>
-//                 <thead>
-//                     <tr>
-//                         <th>#</th>
-//                         <th>City</th>
-//                         <th>Hotel</th>
-//                         <th>Hot Spot</th>
-//                         <th>Restaurant</th>
-//                         <th>Activity</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>{favMapper()}</tbody>
-//             </Table>
-//         </>
-//     );
-// };
-
-// export default FavTable;

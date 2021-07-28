@@ -9,6 +9,15 @@ import Auth from "../auth/Auth";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import Hotels from "../destinations/Hotels";
 import CityFetch from "../destinations/City";
+import Toggle from "../site/darkToggle/Toggler"; //add dark mode toggle to navbar
+import { GlobalStyles } from "../site/darkToggle/Global";
+import { lightTheme, darkTheme } from "../site/darkToggle/Themes";
+import { useDarkMode } from "../site/darkToggle/useDarkMode";
+import { ThemeProvider } from "styled-components";
+
+//====================================================================================================================
+// MADE BY CHERRON
+//====================================================================================================================
 
 const Sitebar = () => {
     const [open, setOpen] = useState(false);
@@ -81,7 +90,12 @@ const [sessionToken, setSessionToken] = useState("");
         );
     };
 
-        return (
+    const [theme, themeToggler, mountedComponent] = useDarkMode();
+    const themeMode = theme === "light" ? lightTheme : darkTheme;
+
+    return (
+        <ThemeProvider theme={themeMode}>
+            <GlobalStyles />
             <Grid container direction="row" alignItems="center" spacing={0}>
                 <Grid item xs={12}>
                     <AppBar className="sitebar" position="sticky">
@@ -89,6 +103,7 @@ const [sessionToken, setSessionToken] = useState("");
                             <Typography variant="h6" className={classes.title}>
                                 Juno
                             </Typography>
+                            <Toggle theme={theme} toggleTheme={themeToggler} />
                             <Button
                                 ref={anchorRef}
                                 aria-haspopup="true"
@@ -150,9 +165,8 @@ const [sessionToken, setSessionToken] = useState("");
                     <FavMap />
                 </Route>
             </Grid>
-        );
-
-}
-
+        </ThemeProvider>
+    );
+};
 
 export default Sitebar;
