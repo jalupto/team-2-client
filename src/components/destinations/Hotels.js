@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardHeader, CardMedia, CardContent, 
-    // CardActions, IconButton, 
-    Typography, Grid} from "@material-ui/core";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography, Grid } from "@material-ui/core";
 import "../../App.css";
 
 //====================================================================================================================
@@ -34,10 +31,14 @@ const Hotels = (props) => {
             minHeight: '100%',
             padding: '5%',
             textAlign: 'center'
+
         },
         media: {
             height: 0,
             paddingTop: "56.25%", // 16:9
+        },
+        gridContainer: {
+            padding: "5%",
         },
         // links: {
         //     textAlign: 'center'
@@ -73,7 +74,7 @@ const Hotels = (props) => {
                                     className={classes.links}
                                 >
                                     Price:
-                                    {result.price}
+                                    {" " + result.price}
                                     {/* <br/> //tried getting booking links to show on condition
 
                                     <a href={result.business_listings.mobile_contacts[0] === null ? (<p>Unable to book at this time.</p>) : (result.business_listings.mobile_contacts[0].value)} target='blank'>Book Now!</a> */}

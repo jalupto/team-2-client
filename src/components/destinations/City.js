@@ -1,10 +1,11 @@
-import React, {
-    useEffect, 
-    useState} from "react";
+
+import React, { useEffect, useState } from "react";
 import { FormControl, Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { DebounceInput } from "react-debounce-input";
 import Hotels from "./Hotels";
-import { DebounceInput } from 'react-debounce-input';
+import Attractions from "./Attractions";
+import Restaurants from "./Restaurants";
 
 //====================================================================================================================
 // MADE BY JARED AND CHERRON
@@ -24,8 +25,8 @@ const CityFetch = () => {
         const lon = results.lon;
         setLat(lat);
         setLon(lon);
-        setCity("")
-    }
+        setCity("");
+    };
 
     const useStyles = makeStyles(() => ({
         gridContainer: {
@@ -34,12 +35,12 @@ const CityFetch = () => {
     }));
 
     const classes = useStyles();
-
-    useEffect(() => {
+  
+      useEffect(() => {
         if (lat && lon && city) { //keep from constantly changing state and making repeat fetches
             getCity();
-        };
-    }, []);
+          }
+        }, [lat, lon, city]);
 
     return (
         <Grid container justifyContent='center' className={classes.gridContainer}>
@@ -54,8 +55,11 @@ const CityFetch = () => {
                 <Button onClick={getCity}>Search</Button>
             </FormControl>
             <Hotels getCity={getCity} lat={lat} lon={lon} city={city} />
+            <Attractions city={city} lat={lat} lon={lon} />
+            <Restaurants lat={lat} lon={lon} />
         </Grid>
     );
 };
 
 export default CityFetch;
+

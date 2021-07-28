@@ -41,6 +41,9 @@
   }
 }
 
+/* Global Styling */
+
+
 /* Create A Favorite & NavbarStyling */
 
 button.save-fav, button.fav-icon, .sitebar {
@@ -52,6 +55,12 @@ button.save-fav:hover, .sitebar-list {
 background-color: #F05AA1;
 color: #5C70B5;
 }
+
+.modal-body {
+  position: relative;
+  top: 10%;
+}
+
 
 /*Card Styling*/
 .fav_icon {

@@ -138,13 +138,8 @@ const [sessionToken, setSessionToken] = useState("");
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem onClick={handleClose}>
-                                                <Link to="/hotels">
-                                                    Hotel Search
-                                                </Link>
-                                            </MenuItem>
-                                            <MenuItem onClick={handleClose}>
-                                                <Link to="/city">
-                                                    City Search
+                                                <Link to="/itinerary">
+                                                    Itinerary Builder
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem onClick={handleClose}>
@@ -163,10 +158,7 @@ const [sessionToken, setSessionToken] = useState("");
                 <Route exact path="/favs">
                     {protectedViews()}
                 </Route>
-                <Route exact path="/hotels">
-                    <Hotels />
-                </Route>
-                <Route exact path="/city">
+                <Route exact path="/itinerary">
                     <CityFetch />
                 </Route>
                 <Route exact path="/">
