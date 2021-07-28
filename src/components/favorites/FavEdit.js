@@ -32,33 +32,67 @@ const FavEdit = (props) => {
         })
     };
 
-    return(
-        <Modal isOpen={true}>
+    return (
+        <Modal isOpen={true} className='modal-body'>
             <ModalHeader>Update your favorite destination</ModalHeader>
             <ModalBody>
                 <Form onSubmit={favUpdate}>
-                    <Button type='button' onClick={handleDis}>UPDATE</Button>
+                    <Button type="button" onClick={handleDis}>
+                        UPDATE
+                    </Button>
                     <FormGroup>
-                        <Label htmlFor='city'>Edit City:</Label>
-                        <Input disabled={isDisabled} name='city' value={editCity} onChange={(e) => setEditCity(e.target.value)}/>
+                        <Label htmlFor="city">Edit City:</Label>
+                        <Input
+                            disabled={isDisabled}
+                            name="city"
+                            value={editCity}
+                            onChange={(e) => setEditCity(e.target.value)}
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='hotel'>Edit Hotel:</Label>
-                        <Input disabled={isDisabled} name='hotel' value={editHotel} onChange={(e) => setEditHotel(e.target.value)}/>
+                        <Label htmlFor="hotel">Edit Hotel:</Label>
+                        <Input
+                            disabled={isDisabled}
+                            name="hotel"
+                            value={editHotel}
+                            onChange={(e) => setEditHotel(e.target.value)}
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='hot_spot'>Edit Hot Spot:</Label>
-                        <Input disabled={isDisabled} name='hot_spot' value={editHot_Spot} onChange={(e) => setEditHot_Spot(e.target.value)}/>
+                        <Label htmlFor="hot_spot">Edit Hot Spot:</Label>
+                        <Input
+                            disabled={isDisabled}
+                            name="hot_spot"
+                            value={editHot_Spot}
+                            onChange={(e) => setEditHot_Spot(e.target.value)}
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='restaurant'>Edit Restaurant:</Label>
-                        <Input disabled={isDisabled} name='restaurant' value={editRest} onChange={(e) => setEditRest(e.target.value)}/>
+                        <Label htmlFor="restaurant">Edit Restaurant:</Label>
+                        <Input
+                            disabled={isDisabled}
+                            name="restaurant"
+                            value={editRest}
+                            onChange={(e) => setEditRest(e.target.value)}
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor='activity'>Edit Activity:</Label>
-                        <Input disabled={isDisabled} name='activity' value={editAct} onChange={(e) => setEditAct(e.target.value)}/>
+                        <Label htmlFor="activity">Edit Activity:</Label>
+                        <Input
+                            disabled={isDisabled}
+                            name="activity"
+                            value={editAct}
+                            onChange={(e) => setEditAct(e.target.value)}
+                        />
                     </FormGroup>
-                    <Button type='submit'>SAVE</Button>
+                    <Button type="submit">SAVE</Button>
+                    <Button
+                        onClick={() => {
+                            props.updateOff();
+                        }}
+                    >
+                        CANCEL
+                    </Button>
                 </Form>
             </ModalBody>
         </Modal>

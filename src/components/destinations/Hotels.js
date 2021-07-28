@@ -1,270 +1,103 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardHeader, CardMedia, CardContent, CardActions, IconButton, Typography, Grid} from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
+import { Card, CardHeader, CardMedia, CardContent, CardActions, Typography, Grid } from "@material-ui/core";
 import "../../App.css";
 
 const Hotels = (props) => {
-    const [name, setName] = useState("");
-    const [photo, setPhoto] = useState(null);
-    const [price, setPrice] = useState("");
-    const [rating, setRating] = useState("");
+    const [results, setResults] = useState([]);
 
-    const getHotels = async (e) => {
+    const getHotels = async () => {
         const res = await fetch(
-        `https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=${props.lat}&longitude=${props.lon}&lang=en_US&limit=10&distance=10`,
-        {
-            method: "GET",
-            headers: {
-                "x-rapidapi-key":
-                    "253f860dccmsh5a8313c5abb0c80p1ea8c4jsnd54b97e2bab2",
-                "x-rapidapi-host":
-                    "travel-advisor.p.rapidapi.com",
-            },
-        }
-    )  
-            const results = await res.json()
-            const name = results.data[0].name;
-            const photo = results.data[0].photo.images.original.url;
-            const price = results.data[0].price;
-            const rating = results.data[0].rating;
-            setName(name);
-            setPhoto(photo);
-            setPrice(price);
-            setRating(rating);
+            `https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=${props.lat}&longitude=${props.lon}&lang=en_US&hotel_class=4,5&limit=4&distance=25&distance=10`,
+            {
+                method: "GET",
+                headers: {
+                    "x-rapidapi-key": `${process.env.REACT_APP_TRAVEL_KEY}`,
+                    "x-rapidapi-host": "travel-advisor.p.rapidapi.com",
+                },
+            }
+        );
+            const response = await res.json();
+            const results = response.data;
             console.log(results);
-            console.log(name)
-    } 
+            setResults(results);
 
-    const useStyles = makeStyles((theme) => ({
+    };
+    const useStyles = makeStyles(() => ({
         root: {
             maxWidth: 345,
+            minWidth: 150,
         },
         media: {
             height: 0,
             paddingTop: "56.25%", // 16:9
         },
+        gridContainer: {
+            padding: "5%",
+        },
+        links: {
+            textAlign: "center",
+        },
+        button: {
+            fontSize: "0.75rem",
+        },
     }));
 
     const classes = useStyles();
 
-    
     useEffect(() => {
-        if (props.lat && props.lon && props.city) {
-            getHotels();
+        if (props.lat && props.lon) {
+            getHotels();  
         }
-    })
-    
-    return (
-        <Grid container spacing={3}>
-            <Grid container direction="row" justifyContent="center" spacing={3}>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-            </Grid>
-                <div></div>
-            <Grid container direction="row" justifyContent="center" spacing={3}>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>{" "}
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item direction="row" spacing={2} xs={2}>
-                    <Card className={classes.root}>
-                        <CardHeader title={name} subheader={rating} />
-                        <CardMedia className={classes.media} image={photo} />
-                        <CardContent>
-                            <Typography
-                                variant="body2"
-                                color="textSecondary"
-                                component="p"
-                            >
-                                Price Range: {price}
-                            </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                                <FavoriteIcon className="fav_icon" />
-                            </IconButton>
-                        </CardActions>
-                    </Card>
-                </Grid>
-            </Grid>
-        </Grid>
-    );
+    },[props.lat, props.lon]);
 
-}
+    return (
+        <>
+            <Grid
+                container
+                spacing={4}
+                direction="row"
+                justifyContent="center"
+                className={classes.gridContainer}
+            >
+                <Grid item xs={12} textAlign="center">
+                    <h3>Hotels</h3>
+                </Grid>
+                {results.map((result, index) => {
+                    return (
+                        <Grid item xs={12} sm={6} md={3}>
+                            <Card className={classes.root} key={index}>
+                                <CardHeader
+                                    title={result.name}
+                                    subheader={result.rating + " Stars"}
+                                />
+                                <CardMedia
+                                    className={classes.media}
+                                    image={result.photo.images.original.url}
+                                />
+                                <CardContent>
+                                    <Typography
+                                        variant="body2"
+                                        color="textSecondary"
+                                        component="p"
+                                        className={classes.links}
+                                    >
+                                        Price:
+                                        {" " + result.price}
+                                        <br />
+                                        <a href={result.url} target="blank">
+                                            Book Now!
+                                        </a>
+                                    </Typography>
+                                </CardContent>
+                                <CardActions disableSpacing></CardActions>
+                            </Card>
+                        </Grid>
+                    );
+                })}
+            </Grid>
+        </>
+    );
+};
 
 export default Hotels;
