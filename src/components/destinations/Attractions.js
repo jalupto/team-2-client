@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CardMedia, Grid } from "@material-ui/core";
 import "../../App.css";
 
-const Restaurants = (props) => {
+const Attractions = (props) => {
     const [results, setResults] = useState([]);
     const [location, setLocation] = useState('');
-
-    const getRestaurants = async () => {
-
+    
+    const getAttractions = async () => {
         const res = await fetch(
-            `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${props.lat}&longitude=${props.lon}&limit=8&distance=10&currency=USD&open_now=false&lunit=mi&lang=en_US`,
+            `https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng?longitude=${props.lon}&latitude=${props.lat}&lunit=mi&currency=USD&limit=8&distance=10&lang=en_US`,
             {
                 method: "GET",
                 headers: {
@@ -22,11 +21,12 @@ const Restaurants = (props) => {
             const response = await res.json();
             const data = response.data; //store results into array to map over
             console.log(data);
-            const newRest = filteredRestaurants(data); //storing data returned from filteredHotels
-            setResults(newRest);
+            const newAttractions = filteredAttractions(data); //storing data returned from filteredHotels
+            setResults(newAttractions);
             const location = data[0].location_string;
             setLocation(location);
-    }
+    };
+    
     const useStyles = makeStyles(() => ({ //allow styling inside grid components
         media: {
             height: 0,
@@ -34,7 +34,7 @@ const Restaurants = (props) => {
             borderRadius: '1rem'
         },
         gridContainer: {
-            margin: '5%'
+            margin: "5%",
         },
         category: {
             textAlign: 'center'
@@ -43,24 +43,22 @@ const Restaurants = (props) => {
 
     const classes = useStyles();
 
-    useEffect(() => {
-        if (props.lat && props.lon) {
-            getRestaurants();
-        }
-            
-    },[props.lat, props.lon]);
+        useEffect(() => {
+            if (props.lat && props.lon) {
+                getAttractions();
+            }
+        },[props.lat, props.lon]);
 
-    const filteredRestaurants = (results) => {
-        //filter returns new array without ad based off result.ad_position as false
-        let restResults = results.filter((result) => !result.ad_position);
-        console.log(restResults);
-        return restResults;
-    };
+    const filteredAttractions = (results) => { //filter returns new array without ad based off result.ad_position as false
+        let attResults = results.filter((result) => !result.ad_position);
+        console.log(attResults);
+        return attResults;
+    }; 
 
     return (
         <Grid container spacing={4} direction='row' justifyContent='center' className={classes.gridContainer}>
             <Grid item xs={12} className={classes.category}>
-                <h1>Restaurants in: {location}</h1>
+                <h1>Activities in: {location}</h1>
             </Grid>
             <br />
             {results.map((result, index) => {
@@ -69,13 +67,6 @@ const Restaurants = (props) => {
                         <div id='card'>
                             <div className='card-content'>
                                 <h5 className='card-title'>{result.name}</h5>
-                                <p className='card-subtitle'>{
-                                    result.rating === undefined ? (
-                                        <p className='null'>No rating available</p>
-                                    ) : (
-                                        <p>{result.rating} Stars</p>
-                                    )
-                                }</p>
                                 <h4>Address: </h4>
                                 {result.address === "" ? (
                                     <p className='null'>Address unavailable</p>
@@ -94,8 +85,9 @@ const Restaurants = (props) => {
                                 {result.website === undefined ? (
                                     <p className='null'>Website unavailable</p>
                                 ) : (
-                                    <a href={result.website}className='link' target='blank'>Book Now!</a>
+                                    <a href={result.website} className='link' target='blank'>Book Now!</a>
                                 )}
+                                <hr/>
                             </div>
                             {result.photo === undefined ? (
                                 <CardMedia
@@ -116,4 +108,4 @@ const Restaurants = (props) => {
     );
 };
 
-export default Restaurants;
+export default Attractions;
