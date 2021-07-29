@@ -44,9 +44,8 @@
   }
 }
 
-/* Create A Favorite & NavbarStyling */
-
-button.save-fav, button.fav-icon, .sitebar {
+/* Create A Favorite & Navbar Styling */
+button.save-fav, button.fav-icon, .sitebar, button.sitebar {
 color: var(--clr-pnk);
 background-color: var(--clr-prp);
 }
@@ -56,7 +55,15 @@ background-color: var(--clr-pnk);
 color: var(--clr-prp);
 }
 
-/*Card Styling*/
+button.save-fav {
+  margin: 5px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
 .fav_icon {
   color: var(--clr-pnk);
 }
@@ -70,8 +77,15 @@ color: var(--clr-prp);
   --bs-table-hover-bg: var(--clr-prp);
 }
 
+button.update-btn, button.delete-btn {
+  margin: 5px;
+}
+
+/*Modal Styling */
 /*move modal down from top*/
 .modal-body {
+  color: var(--clr-prp);
+  background-color: var(--clr-lgt-prp);
   position: relative;
   top: 10%;
 }
@@ -192,4 +206,21 @@ p {
     transition-delay: 0ms
     !important;
   }
+}
+
+h5.modal-title, div.modal-header {
+  background-color: var(--clr-lgt-prp);
+}
+
+button.save-btn,
+button.cancel-btn {
+  border: solid 1px var(--clr-prp);
+  color: var(--clr-prp);
+  background-color: var(--clr-lgt-prp);
+  margin: 5px;
+}
+
+button.cancel-btn:hover, button.save-btn:hover {
+  background-color: var(--clr-prp);
+  color: var(--clr-lgt-prp);
 }

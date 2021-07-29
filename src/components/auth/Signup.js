@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 // import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import APIURL from '../../helpers/environment';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
@@ -17,7 +18,7 @@ const Signup = (props) => {
     // const { register, onSubmit } = useForm();
     const handleSubmit = (event) => {    
         event.preventDefault();
-        fetch("http://localhost:3000/user/register", {
+        fetch(`${APIURL}/user/register`, {
             method: 'POST',
             body: JSON.stringify({user: {email: email, password: password}}),
             headers: new Headers({

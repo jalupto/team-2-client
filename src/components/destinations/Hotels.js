@@ -1,13 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { 
-    // Card, CardHeader, 
-    CardMedia, 
-    // CardContent, 
-    // CardActions, IconButton, 
-    // Typography, 
-    Grid} from "@material-ui/core";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
+import { CardMedia, Grid } from "@material-ui/core";
 import "../../App.css";
 
 //====================================================================================================================
@@ -35,33 +28,15 @@ const Hotels = (props) => {
             const location = data[0].location_string;
             setLocation(location);
     }
-
     const useStyles = makeStyles(() => ({ //allow styling inside grid components
-        // root: {
-        //     minWidth: '100%',
-        //     minHeight: '100%',
-        //     // padding: '5%',
-        //     textAlign: 'center'
-        // },
         media: {
             height: 0,
             paddingTop: "56.25%", // 16:9
             borderRadius: '1rem'
         },
-        // links: {
-        //     textAlign: 'center'
-        // },
-        // button: {
-        //     fontSize: '0.75rem',
-        // },
         gridContainer: {
             margin: '5%'
         },
-        // title: {
-        //     textAlign: 'center',
-        //     fontSize: '0.5rem',
-        //     padding: 0
-        // },
         category: {
             textAlign: 'center'
         }
@@ -76,17 +51,17 @@ const Hotels = (props) => {
     }, [props.lat, props.lon]);
 
     const filteredHotels = (results) => { //filter returns new array without ad based off result.ad_position as false
-        let hotelResults = results.filter(result => !(result.ad_position))
+        let hotelResults = results.filter((result) => !result.ad_position);
         console.log(hotelResults);
         return hotelResults;
-    }
+    };    
 
     return (
         <Grid container spacing={4} direction='row' justifyContent='center' className={classes.gridContainer}>
             <Grid item xs={12} className={classes.category}>
                 <h1>Hotels in: {location}</h1>
             </Grid>
-            <br/>
+            <br />
             {results.map((result, index) => {
                 return(
                     <Grid item xs={12} sm={6} key={index}>
@@ -98,9 +73,17 @@ const Hotels = (props) => {
                                 {result.business_listings.mobile_contacts[0] === undefined ? (<p id='null'>Unable to book at this time.</p>) : (<a href={result.business_listings.mobile_contacts[0].value} className='link' target='blank'>Book Now!</a>)}
                                 <hr/>
                             </div>
-                            <CardMedia id='img' className={classes.media} 
-                            image={result.photo.images.original.url} 
-                            />
+                            {result.photo === undefined ? (
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://www.spearsandcorealestate.com/wp-content/themes/spears/images/no-image.png"
+                                />
+                            ) : (
+                                <CardMedia
+                                    className={classes.media}
+                                    image={result.photo.images.original.url}
+                                />
+                            )}
                         </div>
                     </Grid>
                 )
@@ -110,34 +93,3 @@ const Hotels = (props) => {
 };
 
 export default Hotels;
-
-/*
-<Grid item xs={12} sm={6} md={3} key={index}>
-                        <Card className={classes.root}>
-                            <CardHeader className={classes.title} title={result.name} subheader={result.rating+' Stars'} />
-                            <CardContent>
-                                <Typography
-                                    variant="body2"
-                                    color="textSecondary"
-                                    component="p"
-                                    className={classes.links}
-                                >
-                                    Price:
-                                    {' ' + result.price}
-                                    {/* <br/> //tried getting booking links to show on condition
-
-                                    <a href={result.business_listings.mobile_contacts[0] === null ? (<p>Unable to book at this time.</p>) : (result.business_listings.mobile_contacts[0].value)} target='blank'>Book Now!</a> 
-                                </Typography>
-                            </CardContent>
-                            <CardMedia className={classes.media} 
-                            image={result.photo.images.original.url} 
-                            />
-                            {/* <CardActions disableSpacing>
-                                <IconButton className={classes.button}>
-                                    Save to Favs //not sure how to save result to fav table
-                                    <FavoriteIcon className="fav_icon" />
-                                </IconButton>
-                            </CardActions> 
-                        </Card>
-                    </Grid>
-                            */
