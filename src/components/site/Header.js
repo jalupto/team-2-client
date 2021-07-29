@@ -9,8 +9,8 @@ const Flipboard = () => {
     return (
         <FlapDisplay
         chars={Presets.ALPHANUM + ",!"}
-        length={17}
-        value={"Create a Favorite"}
+        length={24}
+        value={"Choose your destination!"}
         />
     );
 };
