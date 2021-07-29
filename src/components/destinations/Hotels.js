@@ -48,6 +48,9 @@ const Hotels = (props) => {
         // },
         gridContainer: {
             margin: '5%'
+        },
+        title: {
+            textAlign: 'center'
         }
     }));
 
@@ -59,8 +62,7 @@ const Hotels = (props) => {
         }
     }, [props.lat, props.lon]);
 
-    const filteredHotels = (results) => {
-        //filter returns new array without ad based off result.ad_position as false
+    const filteredHotels = (results) => { //filter returns new array without ad based off result.ad_position as false
         let hotelResults = results.filter((result) => !result.ad_position);
         console.log(hotelResults);
         return hotelResults;
