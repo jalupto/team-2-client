@@ -15,7 +15,7 @@ const Hotels = (props) => {
 
     const getHotels = async () => { //receive coordinates from city fetch to search for nearby hotels
         const res = await fetch(
-            `https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=${props.lat}&longitude=${props.lon}&lang=en_US&hotel_class=4,5&limit=4&distance=10`, {
+            `https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=${props.lat}&longitude=${props.lon}&lang=en_US&hotel_class=4,5&limit=20&distance=10`, {
                 "method": "GET",
                 "headers": {
                     "x-rapidapi-key": process.env.REACT_APP_TRAVEL_KEY,
@@ -48,6 +48,9 @@ const Hotels = (props) => {
         // },
         gridContainer: {
             margin: '5%'
+        },
+        title: {
+            textAlign: 'center'
         }
     }));
 
