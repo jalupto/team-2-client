@@ -1,8 +1,11 @@
 import React,{useState} from 'react';
-import { Table, Button, } from 'reactstrap';
+import { Table } from 'reactstrap';
+import {Button} from "@material-ui/core"
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Rating from "@material-ui/lab/Rating";
+import DeleteIcon from "@material-ui/icons/Delete";
+import UpdateIcon from "@material-ui/icons/Update";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 import SentimentDissatisfiedIcon from "@material-ui/icons/SentimentDissatisfied";
@@ -20,7 +23,7 @@ import APIURL from '../../helpers/environment';
 
 const FavTable = (props) => {
     const [value, setValue] = useState(null);
-          
+
     const deleteFav = (fav) => {
         fetch(`${APIURL}/favs/${fav.id}`, {
             method: 'DELETE',
@@ -35,10 +38,10 @@ const FavTable = (props) => {
 
 const StyledRating = withStyles({
     iconFilled: {
-        color: "#ff6d75",
+        color: "#f180b0",
     },
     iconHover: {
-        color: "#ff3d47",
+        color: "#F05AA1",
     },
 })(Rating);
 
@@ -106,8 +109,9 @@ IconContainer.propTypes = {
                         </Box>
                     </td>
                     <td>
-                        <Button style={{backgroundColor:'#B2B0E2', color: '#5C70B5'}} onClick={() => {props.editUpdateFav(fav); props.updateOn()}}>Update</Button>
-                        <Button style={{backgroundColor:'#F05AA1', color: '#5C70B5'}} onClick={() => {deleteFav(fav)}}>Delete</Button>
+                        <Button className= "update-btn" style={{backgroundColor:'#B2B0E2', color: '#5C70B5'}} onClick={() => {props.editUpdateFav(fav); props.updateOn()}}>Update<UpdateIcon /></Button>
+                        <br />
+                        <Button className="delete-btn" style={{backgroundColor:'#F05AA1', color: '#5C70B5'}} onClick={() => {deleteFav(fav)}}>Delete<DeleteIcon /></Button>
                     </td>
                 </tr>
             );

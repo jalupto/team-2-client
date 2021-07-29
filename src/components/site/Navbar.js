@@ -99,7 +99,7 @@ const [sessionToken, setSessionToken] = useState("");
             <Grid container direction="row" alignItems="center" spacing={0}>
                 <Grid item xs={12}>
                     <AppBar className="sitebar" position="sticky">
-                        <Toolbar>
+                        <Toolbar className="sitebar">
                             <Typography variant="h6" className={classes.title}>
                                 Juno
                             </Typography>
@@ -108,8 +108,9 @@ const [sessionToken, setSessionToken] = useState("");
                                 ref={anchorRef}
                                 aria-haspopup="true"
                                 onClick={handleToggle}
+                                className="sitebar"
                             >
-                                <AccountCircleIcon />
+                                <AccountCircleIcon className="sitebar" />
                                 Account
                             </Button>
                             <Popper
@@ -132,7 +133,7 @@ const [sessionToken, setSessionToken] = useState("");
                                             <MenuItem onClick={handleClose}>
                                                 <Link to="/">Map</Link>
                                             </MenuItem>
-                                            <MenuItem onClick={handleClose}>
+                                            <MenuItem>
                                                 <Link to="/favs">
                                                     Favorites Dashboard
                                                 </Link>
@@ -143,9 +144,9 @@ const [sessionToken, setSessionToken] = useState("");
                                                 </Link>
                                             </MenuItem>
                                             <MenuItem onClick={handleClose}>
-                                                <li onClick={clearToken}>
+                                                <Link onClick={clearToken}>
                                                     Logout
-                                                </li>
+                                                </Link>
                                             </MenuItem>
                                         </MenuList>
                                     </ClickAwayListener>
@@ -154,15 +155,14 @@ const [sessionToken, setSessionToken] = useState("");
                         </Toolbar>
                     </AppBar>
                 </Grid>
-
+                <Route exact path="/">
+                    <FavMap />
+                </Route>
                 <Route exact path="/favs">
                     {protectedViews()}
                 </Route>
                 <Route exact path="/itinerary">
                     <CityFetch />
-                </Route>
-                <Route exact path="/">
-                    <FavMap />
                 </Route>
             </Grid>
         </ThemeProvider>

@@ -35,11 +35,11 @@ const CityFetch = () => {
     }));
 
     const classes = useStyles();
-  
-      useEffect(() => {
+
+    useEffect(() => {
         if (lat && lon && city) { //keep from constantly changing state and making repeat fetches
             getCity();
-          }
+        }
         }, [lat, lon, city]);
 
     return (
@@ -54,9 +54,9 @@ const CityFetch = () => {
                 />
                 <Button onClick={getCity}>Search</Button>
             </FormControl>
-            <Hotels getCity={getCity} lat={lat} lon={lon} city={city} />
-            <Attractions city={city} lat={lat} lon={lon} />
-            <Restaurants lat={lat} lon={lon} />
+                <Hotels lat={lat} lon={lon} />   
+                <Attractions lat={lat} lon={lon} />  
+                <Restaurants lat={lat} lon={lon} />   
         </Grid>
     );
 };
