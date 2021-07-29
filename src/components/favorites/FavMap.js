@@ -3,7 +3,7 @@ import ReactMapGL from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder"; //===================== search box
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import { Grid, Typography } from "@material-ui/core";
-import Flipboard from "../site/Header";
+// import Flipboard from "../site/Header";
 
 //===============================================================================================================
 // Map by Jared
@@ -50,7 +50,8 @@ const FavMap = () => {
                 </Grid>
                 <br />
             </Grid>
-            <Flipboard />
+            {/* <Flipboard /> */}
+            
             <Grid
                 container
                 direction="column"

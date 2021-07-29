@@ -5,6 +5,7 @@ import {FormControl, FilledInput, Button} from "@material-ui/core/";
 import "../../App.css";
 import APIURL from "../../helpers/environment";
 
+
 //====================================================================================================================
 // MADE BY CHERRON
 //====================================================================================================================
@@ -46,6 +47,7 @@ const [activity, setActivity] = useState("");
 
     return (
         <>
+        
             <h3>Create a Favorite</h3>
             <Form className="create-fav-form" onSubmit={handleSubmit}>
                 <FormControl>

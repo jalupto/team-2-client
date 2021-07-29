@@ -5,6 +5,10 @@ import APIURL from '../../helpers/environment';
 // import { useForm } from "react-hook-form";
 // import "./styles.css";
 
+//====================================================================================================================
+// MADE BY ARIANNE
+//====================================================================================================================
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 const eye = <FontAwesomeIcon icon={faEye} />;

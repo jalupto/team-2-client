@@ -1,17 +1,13 @@
 import React from 'react';
 import { Table, Button } from 'reactstrap';
 import "../../App.css";
+import Flipboard from '../react-split-flap-effect/Flipboard';
 
 //====================================================================================================================
 // MADE BY JARED
 //====================================================================================================================
 
-const FavTable = (props) => {
-    const deleteFav = (fav) => {
-        fetch(`http://localhost:3000/favs/${fav.id}`, {
-import { Table, Button, 
-    // Input 
-} from 'reactstrap';
+
 import APIURL from '../../helpers/environment';
 
 const FavTable = (props) => {
@@ -46,7 +42,7 @@ const FavTable = (props) => {
 
     return (
         <>
-            <h3 >Favorites</h3>
+            <Flipboard name={'Favorites'} />
             <hr />
             <Table hover id='table-font'>
                 <thead>

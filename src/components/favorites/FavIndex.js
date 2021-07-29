@@ -5,6 +5,7 @@ import FavTable from "./FavTable";
 import FavEdit from "./FavEdit";
 import { makeStyles } from "@material-ui/core/styles";
 
+
 //====================================================================================================================
 // MADE BY CHERRON
 //====================================================================================================================
@@ -72,7 +73,9 @@ const FavIndex = (props) => {
                 <FavTable favs={favs} editUpdateFav={editUpdateFav} updateOn={updateOn} fetchFavs={fetchFavs} token={props.token} />
             </Grid>
             {updateActive ? <FavEdit favToUpdate={favToUpdate} updateOff={updateOff} token={props.token} fetchFavs={fetchFavs}/> : <> </>}
+       
         </Grid>
+        
     )
 }
 

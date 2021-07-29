@@ -5,6 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import APIURL from '../../helpers/environment';
 
+
+//====================================================================================================================
+// MADE BY ARIANNE
+//====================================================================================================================
+
 const eye = <FontAwesomeIcon icon={faEye} />;
 
 const Signup = (props) => {
