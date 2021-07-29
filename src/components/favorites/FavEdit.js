@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import { Button, Form, FormGroup, Label, Input, 
+import { Form, FormGroup, Label, Input, 
     Modal, ModalHeader, ModalBody 
 } from 'reactstrap';
+import { Button } from "@material-ui/core"
+import SaveIcon from "@material-ui/icons/Save";
+import CancelIcon from "@material-ui/icons/Cancel";
 import APIURL from '../../helpers/environment';
 
 //====================================================================================================================
@@ -45,29 +48,25 @@ const FavEdit = (props) => {
                     <FormGroup>
                         <Label htmlFor='city'>Edit City:</Label>
                         <Input 
-                        // disabled={isDisabled} 
                         name='city' value={editCity} onChange={(e) => setEditCity(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='hotel'>Edit Hotel:</Label>
                         <Input 
-                        // disabled={isDisabled} 
                         name='hotel' value={editHotel} onChange={(e) => setEditHotel(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='restaurant'>Edit Restaurant:</Label>
                         <Input 
-                        // disabled={isDisabled} 
                         name='restaurant' value={editRest} onChange={(e) => setEditRest(e.target.value)}/>
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor='activity'>Edit Activity:</Label>
                         <Input 
-                        // disabled={isDisabled} 
                         name='activity' value={editAct} onChange={(e) => setEditAct(e.target.value)}/>
                     </FormGroup>
-                    <Button type='submit'>SAVE</Button>
-                    <Button onClick={() => {props.updateOff()}}>CANCEL</Button> {/*added cancel button to close modal */}
+                    <Button className="save-btn" type='submit'>SAVE<SaveIcon /></Button>
+                    <Button className="cancel-btn" onClick={() => {props.updateOff()}}>CANCEL<CancelIcon /></Button> {/*added cancel button to close modal */}
                 </Form>
             </ModalBody>
         </Modal>
