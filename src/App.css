@@ -125,7 +125,7 @@ button.update-btn, button.delete-btn {
   background: var(--clr-pnk);
   transform: scaleX(0);
   transform-origin: left; /*animate line from left instead of center*/
-  transition: transform 500ms ease;
+  transition: transform 750ms ease;
 }
 
 #card:hover .card-title::after,
@@ -137,8 +137,8 @@ button.update-btn, button.delete-btn {
 .card-content {
   --padding: 1.5rem; /*set padding variable to reuse*/
   padding: var(--padding);
-  transform: translateY(75%);
-  transition: transform 300ms ease;
+  transform: translateY(85%);
+  transition: transform 1000ms ease;
 }
 
 #card:hover .card-content,
@@ -151,15 +151,21 @@ button.update-btn, button.delete-btn {
   transition-duration: 0ms;
 }
 
-.card-content > *:not(p,hr) { /*everything inside except...*/
+.card-content > * { 
   opacity: 0;
-  transition: opacity 500ms linear; /*smooth opacity transition*/
+  transition: opacity 250ms linear; /*smooth opacity transition*/
 }
 
-#card:hover .card-content > *:not(p,hr),
+#card:hover .card-content > *:not(p,hr), /*everything inside except...*/
 #card:focus-within .card-content > *:not(p,hr) {
   opacity: 1;
-  transition-delay: 400ms;
+  transition-delay: 500ms;
+}
+
+#card:hover .card-content > p,hr,
+#card:focus-within .card-content > p,hr {
+  opacity: 0.5;
+  transition-delay: 500ms;
 }
 
 .link {
@@ -169,14 +175,14 @@ button.update-btn, button.delete-btn {
   background-color: var(--clr-pnk);
   padding: 0.3em 0.5em;
   border-radius: 0.5rem;
-  transition: transform 250ms ease;
 }
 .link:hover, .link:focus {
   background-color: var(--clr-prp);
   transform: scale(1.07);
+  transition: transform 100ms ease;
 }
 
-#null {
+.null {
   padding: 0.3em 0.5em;
 }
 
@@ -223,4 +229,8 @@ button.cancel-btn {
 button.cancel-btn:hover, button.save-btn:hover {
   background-color: var(--clr-prp);
   color: var(--clr-lgt-prp);
+}
+
+.flip {
+  font-size: 3rem;
 }

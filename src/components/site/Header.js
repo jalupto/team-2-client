@@ -5,9 +5,11 @@ import React from // useState
 // import ReactCardFlip from "react-card-flip";
 import { FlapDisplay, Presets } from "react-split-flap-effect";
 // import from 'extras/themes.css'
+import '../../App.css';
 const Flipboard = () => {
     return (
         <FlapDisplay
+        className='flip' //added by Jared to make the font bigger
         chars={Presets.ALPHANUM + ",!"}
         length={24}
         value={"Choose your destination!"}

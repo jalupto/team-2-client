@@ -54,7 +54,7 @@ const Hotels = (props) => {
         let hotelResults = results.filter((result) => !result.ad_position);
         console.log(hotelResults);
         return hotelResults;
-    };    
+    };
 
     return (
         <Grid container spacing={4} direction='row' justifyContent='center' className={classes.gridContainer}>
@@ -70,7 +70,7 @@ const Hotels = (props) => {
                                 <h5 className='card-title'>{result.name}</h5>
                                 <p className='card-subtitle'>{result.rating+' Stars'}</p>
                                 <h6>Price: {result.price}</h6>
-                                {result.business_listings.mobile_contacts[0] === undefined ? (<p id='null'>Unable to book at this time.</p>) : (<a href={result.business_listings.mobile_contacts[0].value} className='link' target='blank'>Book Now!</a>)}
+                                {result.business_listings.mobile_contacts[0] === undefined ? (<p className='null'>Unable to book at this time.</p>) : (<a href={result.business_listings.mobile_contacts[0].value} className='link' target='blank'>Book Now!</a>)}
                                 <hr/>
                             </div>
                             {result.photo === undefined ? (
